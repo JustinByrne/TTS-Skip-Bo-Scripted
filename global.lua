@@ -11,10 +11,6 @@ PLAYER_STOCK_PILES.Blue = "d46711"
 PLAYER_STOCK_PILES.Purple = "9dd608"
 ALL_PLAYERS = {"White", "Red", "Pink", "Green", "Blue", "Purple"}
 
---[[ function variables --]]
-setupInProgress = false
-setupComplete = false
-
 --[[ Default onLoad function --]]
 function onLoad()
     deckZone = getObjectFromGUID(DECK_ZONE_GUID)
