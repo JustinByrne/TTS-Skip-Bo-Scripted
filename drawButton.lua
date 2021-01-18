@@ -24,12 +24,12 @@ function drawFunc(obj, color, alt_click)
     local max = 5
     local needs = 0
     
-    if #handCount ~= max then
+    if #handCount < max then
         needs = max - #handCount
         deck.deal(needs, color)
     end
 
-    if #Player[color].getHandObjects() ~= max and #deck.getObjects() == 0 then
+    if #Player[color].getHandObjects() < max and #deck.getObjects() == 0 then
         Global.call('moveDiscard')
         needs = max - #Player[color].getHandObjects()
         deck.deal(needs, color)
