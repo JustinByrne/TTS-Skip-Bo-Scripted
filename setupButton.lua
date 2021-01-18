@@ -5,7 +5,7 @@ setupComplete = false
 
 function onLoad()
     --[[ Create button --]]
-    drawButton = {
+    setupButton = {
         click_function = "setupFunc",
         function_owner = self,
         label          = "Setup Game",
@@ -18,7 +18,7 @@ function onLoad()
         font_color     = {0, 0, 0},
         tooltip        = "Setup the Game",
     }
-    self.createButton(drawButton)
+    self.createButton(setupButton)
 end
 
 function setupFunc()
