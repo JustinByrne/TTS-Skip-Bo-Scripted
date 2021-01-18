@@ -1,3 +1,5 @@
+DECK_ZONE_GUID = Global.getVar('DECK_ZONE_GUID')
+
 function onLoad()
     --[[ Create button --]]
     drawButton = {
@@ -17,7 +19,7 @@ function onLoad()
 end
 
 function drawFunc(obj, color, alt_click)
-    local deck = Global.call('getDeck')
+    local deck = Global.call('getDeck', DECK_ZONE_GUID)
     local handCount = Player[color].getHandObjects()
     local max = 5
     local needs = 0

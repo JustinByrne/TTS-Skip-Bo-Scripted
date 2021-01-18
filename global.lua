@@ -18,37 +18,7 @@ function onLoad()
 end
 
 --[[ getting the deck GUID --]]
-function getDeck()
-    local zoneObjects = deckZone.getObjects()
-    for _, item in ipairs(zoneObjects) do
-        if item.tag == 'Deck' then
-            return item
-        end
-    end
-    for _, item in ipairs(zoneObjects) do
-        if item.tag == 'Card' then
-            return item
-        end
-    end
-    return nil
-end
-
-function getDiscardDeck()
-    local zoneObjects = discardZone.getObjects()
-    for _, item in ipairs(zoneObjects) do
-        if item.tag == 'Deck' then
-            return item
-        end
-    end
-    for _, item in ipairs(zoneObjects) do
-        if item.tag == 'Card' then
-            return item
-        end
-    end
-    return nil
-end
-
-function getPileDeck(GUID)
+function getDeck(GUID)
     local pileZone = getObjectFromGUID(GUID)
     local zoneObjects = pileZone.getObjects()
     for _, item in ipairs(zoneObjects) do
@@ -72,7 +42,7 @@ function onObjectEnterScriptingZone(zone, obj)
 end
 
 function movePile(GUID)
-    local deck = getPileDeck(GUID)
+    local deck = getDeck(GUID)
     if deck ~= nil then
         if deck.tag == 'Deck' and #deck.getObjects() == 12 then
             deck.setPosition(discardZone.getPosition())
@@ -84,12 +54,12 @@ end
 function onObjectLeaveScriptingZone(zone, obj)
     --[[ Checking if main deck is empty --]]
     if zone.getGUID() == DECK_ZONE_GUID then
-        if getDeck() == nil and getDiscardDeck() == nil then
+        if getDeck(DECK_ZONE_GUID) == nil and getDeck(DISCARD_ZONE_GUID) == nil then
             broadcastToAll('There are currently no cards in the discard pile, what have you done?', {r=1, g=1, b=1})
-        elseif getDeck() == nil and getDiscardDeck() ~= nil then
-            getDiscardDeck().flip()
-            getDiscardDeck().setPosition(deckZone.getPosition())
-            Wait.time(|| getDeck().randomize(), 0.5)
+        elseif getDeck(DECK_ZONE_GUID) == nil and getDeck(DISCARD_ZONE_GUID) ~= nil then
+            getDeck(DISCARD_ZONE_GUID).flip()
+            getDeck(DISCARD_ZONE_GUID).setPosition(deckZone.getPosition())
+            Wait.time(|| getDeck(DECK_ZONE_GUID).randomize(), 0.5)
         end
     end
 end

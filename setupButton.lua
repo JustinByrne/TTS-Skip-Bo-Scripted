@@ -1,4 +1,5 @@
 ALL_PLAYERS = Global.getTable('ALL_PLAYERS')
+DECK_ZONE_GUID = Global.getVar('DECK_ZONE_GUID')
 PLAYER_STOCK_PILES = Global.getTable('PLAYER_STOCK_PILES')
 setupInProgress = false
 setupComplete = false
@@ -35,7 +36,7 @@ function setupFunc()
 end
 
 function setupCoroutine()
-    local deck = Global.call('getDeck')
+    local deck = Global.call('getDeck', DECK_ZONE_GUID)
     deck.randomize()
 
     playerList = Player.getPlayers()
