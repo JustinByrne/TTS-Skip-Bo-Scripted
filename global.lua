@@ -57,11 +57,16 @@ function onObjectLeaveScriptingZone(zone, obj)
         if getDeck(DECK_ZONE_GUID) == nil and getDeck(DISCARD_ZONE_GUID) == nil then
             broadcastToAll('There are currently no cards in the discard pile, what have you done?', {r=1, g=1, b=1})
         elseif getDeck(DECK_ZONE_GUID) == nil and getDeck(DISCARD_ZONE_GUID) ~= nil then
-            getDeck(DISCARD_ZONE_GUID).flip()
-            getDeck(DISCARD_ZONE_GUID).setPosition(deckZone.getPosition())
-            Wait.time(|| getDeck(DECK_ZONE_GUID).randomize(), 0.5)
+            moveDiscard()
         end
     end
+end
+
+function moveDiscard()
+    local deckZone = getObjectFromGUID(DECK_ZONE_GUID)
+    getDeck(DISCARD_ZONE_GUID).flip()
+    getDeck(DISCARD_ZONE_GUID).setPosition(deckZone.getPosition())
+    Wait.time(|| getDeck(DECK_ZONE_GUID).randomize(), 0.5)
 end
 
 function has_value (tab, val)
