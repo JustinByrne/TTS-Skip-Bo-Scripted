@@ -1,4 +1,6 @@
 DECK_ZONE_GUID = Global.getVar('DECK_ZONE_GUID')
+DISCARD_ZONE_GUID = Global.getVar('DISCARD_ZONE_GUID')
+MAX = 5
 
 function onLoad()
     --[[ Create button --]]
@@ -20,18 +22,18 @@ end
 
 function drawFunc(obj, color, alt_click)
     local deck = Global.call('getDeck', DECK_ZONE_GUID)
-    local handCount = Player[color].getHandObjects()
-    local max = 5
-    local needs = 0
-    
-    if #handCount < max then
-        needs = max - #handCount
-        deck.deal(needs, color)
-    end
+    local discardDeck = Global.call('getDeck', DISCARD_ZONE_GUID)
+    local handCount = #Player[color].getHandObjects()
+    local needs = MAX - handCount
 
-    if #Player[color].getHandObjects() < max and #deck.getObjects() == 0 then
-        Global.call('moveDiscard')
-        needs = max - #Player[color].getHandObjects()
-        deck.deal(needs, color)
+    if needs > 0 then
+        if #deck.getObjects() > needs then
+            print('enough cards')
+            deck.deal(needs, color)
+        else
+            print('not enough cards')
+            Global.call('moveDiscard')
+            Wait.time(|| deck.deal(needs, color), 0.5)
+        end
     end
 end
