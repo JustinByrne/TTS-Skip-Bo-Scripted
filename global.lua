@@ -37,7 +37,7 @@ end
 --[[ Checking when a card enters a zone --]]
 function onObjectEnterScriptingZone(zone, obj)
     if has_value(BUILD_PILE_GUIDS, zone.getGUID()) then
-        Wait.time(function() movePile(zone.getGUID()) end, 0.5)
+        Wait.time(function() movePile(zone.getGUID()) end, 0.75)
     end
 end
 
@@ -66,7 +66,7 @@ function moveDiscard()
     local deckZone = getObjectFromGUID(DECK_ZONE_GUID)
     getDeck(DISCARD_ZONE_GUID).flip()
     getDeck(DISCARD_ZONE_GUID).setPosition(deckZone.getPosition())
-    Wait.time(|| getDeck(DECK_ZONE_GUID).randomize(), 0.5)
+    Wait.time(|| getDeck(DECK_ZONE_GUID).randomize(), 0.75)
 end
 
 function has_value (tab, val)
