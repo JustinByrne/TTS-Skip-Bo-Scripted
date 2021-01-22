@@ -27,13 +27,16 @@ function drawFunc(obj, color, alt_click)
     local needs = MAX - handCount
 
     if needs > 0 then
-        if #deck.getObjects() > needs then
-            print('enough cards')
-            deck.deal(needs, color)
+        if deck ~= nil and deck.tag = "Deck" then
+            if #deck.getObjects() > needs then
+                deck.deal(needs, color)
+            else
+                Global.call('moveDiscard')
+                Wait.time(|| deck.deal(needs, color), 0.75)
+            end
         else
-            print('not enough cards')
             Global.call('moveDiscard')
-            Wait.time(|| deck.deal(needs, color), 0.5)
+            Wait.time(|| deck.deal(needs, color), 0.75)
         end
     end
 end
