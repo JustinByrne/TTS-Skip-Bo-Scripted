@@ -23,15 +23,15 @@ function onLoad()
 end
 
 function setupFunc()
-    if not setupComplete then
+    if not setupComplete and not setupInProgress then
         setupInProgress = true
         startLuaCoroutine(self, 'setupCoroutine')
         setupComplete = true
         Wait.time(|| broadcastToAll("Youngest Player goes first", {r=1, b=1, g=1}), 2)
-    else
-            local msg = "Setup has already been run, please reset the game if you wish to play again"
-            local rgb = {r=1, b=1, g=1}
-            broadcastToAll(msg, rgb);
+    elseif setupComplete
+        broadcastToAll("Setup has already been run, please reset the game if you wish to play again", {r=1, g=0, b=0});
+    elseif setupInProgress
+        broadcastToAll("Setup is currently running, please wait", {r=1, g=0, b=0});
     end
 end
 
