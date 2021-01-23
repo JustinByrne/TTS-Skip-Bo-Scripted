@@ -37,7 +37,7 @@ end
 --[[ Checking when a card enters a zone --]]
 function onObjectEnterScriptingZone(zone, obj)
     if has_value(BUILD_PILE_GUIDS, zone.getGUID()) then
-        obj.rotate({x=0, y=180, z=0})
+        obj.setRotationSmooth({x=0, y=180, z=0})
         Wait.time(function() movePile(zone.getGUID()) end, 0.75)
     end
 end
