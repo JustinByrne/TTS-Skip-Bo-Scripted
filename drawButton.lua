@@ -27,7 +27,7 @@ function drawFunc(obj, color, alt_click)
     local needs = MAX - handCount
 
     if needs > 0 then
-        if deck ~= nil and deck.tag = "Deck" then
+        if deck ~= nil and deck.tag == "Deck" then
             if #deck.getObjects() > needs then
                 deck.deal(needs, color)
             else
