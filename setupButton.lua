@@ -5,7 +5,6 @@ setupInProgress = false
 setupComplete = false
 
 function onLoad()
-    --[[ Create button --]]
     setupButton = {
         click_function = "setupFunc",
         function_owner = self,
@@ -28,10 +27,10 @@ function setupFunc()
         startLuaCoroutine(self, 'setupCoroutine')
         setupComplete = true
         Wait.time(|| broadcastToAll("Youngest Player goes first", {r=1, b=1, g=1}), 2)
-    elseif setupComplete
-        broadcastToAll("Setup has already been run, please reset the game if you wish to play again", {r=1, g=0, b=0});
-    elseif setupInProgress
-        broadcastToAll("Setup is currently running, please wait", {r=1, g=0, b=0});
+    elseif setupComplete then
+        broadcastToAll("Setup has already been run, please reset the game if you wish to play again", {r=1, g=0, b=0})
+    elseif setupInProgress then
+        broadcastToAll("Setup is currently running, please wait", {r=1, g=0, b=0})
     end
 end
 
