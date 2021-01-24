@@ -67,6 +67,8 @@ function setupCoroutine()
                     deck.takeObject({position=target.getPosition(), rotation={x=0, y=270, z=180}})
                 elseif color == "Purple" then
                     deck.takeObject({position=target.getPosition(), rotation={x=0, y=90, z=180}})
+                elseif color == "White" or color == "Red" then
+                    deck.takeObject({position=target.getPosition(), rotation={x=0, y=180, z=180}})
                 else
                     deck.takeObject({position=target.getPosition(), rotation={x=0, y=0, z=180}})
                 end
@@ -75,8 +77,9 @@ function setupCoroutine()
             if color == "Pink" then
                 Wait.time(|| deck.takeObject({position=target.getPosition(), rotation={x=0, y=270, z=0}}), 1)
             elseif color == "Purple" then
-                print(color)
                 Wait.time(|| deck.takeObject({position=target.getPosition(), rotation={x=0, y=90, z=0}}), 1)
+            elseif color == "White" or color == "Red" then
+                Wait.time(|| deck.takeObject({position=target.getPosition(), rotation={x=0, y=180, z=0}}), 1)
             else
                 Wait.time(|| deck.takeObject({position=target.getPosition(), rotation={x=0, y=0, z=0}}), 1)
             end
