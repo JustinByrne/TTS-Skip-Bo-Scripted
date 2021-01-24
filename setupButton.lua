@@ -63,10 +63,23 @@ function setupCoroutine()
             
             --[[ dealing the stock pile --]]
             for i=1,stockPile do
-                deck.takeObject({flip=false, position=target.getPosition()})
+                if color == "Pink" then
+                    deck.takeObject({position=target.getPosition(), rotation={x=0, y=270, z=180}})
+                elseif color == "Purple" then
+                    deck.takeObject({position=target.getPosition(), rotation={x=0, y=90, z=180}})
+                else
+                    deck.takeObject({position=target.getPosition(), rotation={x=0, y=0, z=180}})
+                end
             end
 
-            Wait.time(|| deck.takeObject({flip=true, position=target.getPosition()}), 0.5)
+            if color == "Pink" then
+                Wait.time(|| deck.takeObject({position=target.getPosition(), rotation={x=0, y=270, z=0}}), 1)
+            elseif color == "Purple" then
+                print(color)
+                Wait.time(|| deck.takeObject({position=target.getPosition(), rotation={x=0, y=90, z=0}}), 1)
+            else
+                Wait.time(|| deck.takeObject({position=target.getPosition(), rotation={x=0, y=0, z=0}}), 1)
+            end
 
             coroutine.yield(0)
         end
