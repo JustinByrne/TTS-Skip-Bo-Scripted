@@ -32,11 +32,11 @@ function drawFunc(obj, color, alt_click)
                 deck.deal(needs, color)
             else
                 Global.call('moveDiscard')
-                Wait.time(|| deck.deal(needs, color), 0.75)
+                Wait.time(|| deck.deal(needs, color), 1)
             end
         else
             Global.call('moveDiscard')
-            Wait.time(|| deck.deal(needs, color), 0.75)
+            Wait.time(|| deck.deal(needs, color), 1)
         end
     end
 end

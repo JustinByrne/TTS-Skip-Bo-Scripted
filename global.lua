@@ -38,7 +38,7 @@ end
 function onObjectEnterScriptingZone(zone, obj)
     if has_value(BUILD_PILE_GUIDS, zone.getGUID()) then
         obj.setRotationSmooth({x=0, y=180, z=0})
-        Wait.time(function() movePile(zone.getGUID()) end, 0.75)
+        Wait.time(function() movePile(zone.getGUID()) end, 1)
     end
 end
 
@@ -67,7 +67,7 @@ function moveDiscard()
     local deckZone = getObjectFromGUID(DECK_ZONE_GUID)
     getDeck(DISCARD_ZONE_GUID).flip()
     getDeck(DISCARD_ZONE_GUID).setPosition(deckZone.getPosition())
-    Wait.time(|| getDeck(DECK_ZONE_GUID).randomize(), 0.75)
+    Wait.time(|| getDeck(DECK_ZONE_GUID).randomize(), 1)
 end
 
 function has_value (tab, val)
